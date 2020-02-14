@@ -1,5 +1,8 @@
 package AlgorithmWithJava;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * Given two strings, determine if they share a common substring. A substring may be as small as one character.
 
@@ -38,14 +41,23 @@ public class TwoStrings {
 	public static void main(String[] args) {
 		String s1 = "hello";
 		String s2 = "world";
-		char[] s1Char = {};
-		char[] s2Char = {};
+		HashSet<Character> s1Set = new HashSet<Character>();
+		//HashSet can not duplicate same value, but HashMap can.
+		boolean containStatus = false;
 		
 		for(int i = 0; i<s1.length(); i++) {
-			s1Char[i] = s1.charAt(i);
-		}//S1 String to char array.
+			s1Set.add(s1.charAt(i));
+		}//S1 String to HashMap
 		for(int i = 0; i<s2.length(); i++) {
-			s2Char[i] = s2.charAt(i);
-		}//S2 String to char array.
+			if(containStatus==true) {
+				break;
+			}
+			containStatus = s1Set.contains(s2.charAt(i));
+		}//Search S2 character contains on s1; 
+		
+		
+		System.out.println("It is contains? "+ containStatus);
+		
+		
 	}
 }
